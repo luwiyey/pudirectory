@@ -1,0 +1,116 @@
+[
+  {
+    "id": "1230001",
+    "name": "Lian Dela Cruz",
+    "email": "lian.delacruz.it@panpacificu.edu.ph",
+    "department": "Information Technology",
+    "dateOfBirth": "2003-05-15T00:00:00.000Z",
+    "graduationDate": "2025-06-01T00:00:00.000Z",
+    "currentCourses": [
+      { "name": "Web Development", "credits": 3 },
+      { "name": "Data Structures", "credits": 3 },
+      { "name": "Networking Essentials", "credits": 3 },
+      { "name": "Human Computer Interaction", "credits": 3 }
+    ],
+    "grades": [
+      { "courseName": "Introduction to Computing", "grade": 92 },
+      { "courseName": "Programming Logic", "grade": 88 },
+      { "courseName": "Discrete Mathematics", "grade": 85 }
+    ],
+    "academicHistory": "Consistent Dean's Lister. Active member of the university's programming guild and has won several hackathons."
+  },
+  {
+    "id": "1230002",
+    "name": "Miguel Santos",
+    "email": "miguel.santos.cs@panpacificu.edu.ph",
+    "department": "Computer Science",
+    "dateOfBirth": "2002-08-20T00:00:00.000Z",
+    "graduationDate": "2024-06-01T00:00:00.000Z",
+    "currentCourses": [
+      { "name": "Algorithms and Complexity", "credits": 3 },
+      { "name": "Artificial Intelligence", "credits": 3 },
+      { "name": "Operating Systems", "credits": 3 }
+    ],
+    "grades": [
+      { "courseName": "Discrete Mathematics", "grade": 88 },
+      { "courseName": "Object-Oriented Programming", "grade": 91 },
+      { "courseName": "Data Structures", "grade": 90 }
+    ],
+    "academicHistory": "Specializes in machine learning research. Published a paper in a local conference. Aims to pursue a Master's degree."
+  },
+  {
+    "id": "1230003",
+    "name": "Isabella Reyes",
+    "email": "isabella.reyes.eng@panpacificu.edu.ph",
+    "department": "Engineering",
+    "dateOfBirth": "2002-11-10T00:00:00.000Z",
+    "graduationDate": "2024-06-01T00:00:00.000Z",
+    "currentCourses": [
+      { "name": "Thermodynamics", "credits": 4 },
+      { "name": "Circuit Analysis", "credits": 4 },
+      { "name": "Statics of Rigid Bodies", "credits": 3 }
+    ],
+    "grades": [
+      { "courseName": "Calculus for Engineers", "grade": 85 },
+      { "courseName": "Physics for Engineers", "grade": 82 },
+      { "courseName": "Chemistry for Engineers", "grade": 84 }
+    ],
+    "academicHistory": "Member of the university's team for the national engineering quiz bee. Shows strong leadership potential in group projects."
+  },
+  {
+    "id": "1230004",
+    "name": "Sofia Bautista",
+    "email": "sofia.bautista.edu.en@panpacificu.edu.ph",
+    "department": "Education Major in English",
+    "dateOfBirth": "2001-03-25T00:00:00.000Z",
+    "graduationDate": "2023-06-01T00:00:00.000Z",
+    "currentCourses": [
+      { "name": "Mythology and Folklore", "credits": 3 },
+      { "name": "Language and Linguistics", "credits": 3 },
+      { "name": "Campus Journalism", "credits": 3 }
+    ],
+    "grades": [
+      { "courseName": "Technical Writing", "grade": 95 },
+      { "courseName": "Philippine Literature", "grade": 92 },
+      { "courseName": "World Literature", "grade": 90 }
+    ],
+    "academicHistory": "Award-winning essayist and debater. Volunteers as a tutor for literature subjects."
+  },
+  {
+    "id": "1230005",
+    "name": "Joaquin Mercado",
+    "email": "joaquin.mercado.edu.fil@panpacificu.edu.ph",
+    "department": "Education Major in Filipino",
+    "dateOfBirth": "2003-01-30T00:00:00.000Z",
+    "graduationDate": "2025-06-01T00:00:00.000Z",
+    "currentCourses": [
+        { "name": "Panitikan ng Pilipinas", "credits": 3 },
+        { "name": "Pagtuturo at Pagtataya", "credits": 3 },
+        { "name": "Wika at Kultura", "credits": 3 }
+    ],
+    "grades": [
+        { "courseName": "Masining na Pagpapahayag", "grade": 89 },
+        { "courseName": "Retorika", "grade": 87 }
+    ],
+    "academicHistory": "Actively promotes the Filipino language through university-wide events and seminars. Recognized for his creative writing in Filipino."
+  },
+  {
+    "id": "1230006",
+    "name": "Andrea Garcia",
+    "email": "andrea.garcia.edu.math@panpacificu.edu.ph",
+    "department": "Education Major in Math",
+    "dateOfBirth": "2003-02-18T00:00:00.000Z",
+    "graduationDate": "2025-06-01T00:00:00.000Z",
+    "currentCourses": [
+        { "name": "Modern Geometry", "credits": 3 },
+        { "name": "Abstract Algebra", "credits": 3 },
+        { "name": "Statistics and Probability", "credits": 3 }
+    ],
+    "grades": [
+        { "courseName": "Differential Equations", "grade": 93 },
+        { "courseName": "Calculus II", "grade": 86 },
+        { "courseName": "Linear Algebra", "grade": 88 }
+    ],
+    "academicHistory": "Represents the university in regional math competitions. Volunteers as a peer tutor for college algebra."
+  }
+]

@@ -1,0 +1,111 @@
+
+{
+  "entities": {
+    "Student": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Student",
+      "type": "object",
+      "description": "Represents a student in the system.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Student entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The student's full name."
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "description": "The student's date of birth.",
+          "format": "date-time"
+        },
+        "email": {
+          "type": "string",
+          "description": "The student's email address.",
+          "format": "email"
+        },
+        "department": {
+          "type": "string",
+          "description": "The student's department or college."
+        },
+        "graduationDate": {
+          "type": "string",
+          "description": "The student's expected graduation date.",
+          "format": "date-time"
+        },
+        "currentCourses": {
+          "type": "array",
+          "description": "A list of courses the student is currently enrolled in.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "credits": { "type": "number" }
+            },
+            "required": ["name", "credits"]
+          }
+        },
+        "grades": {
+          "type": "array",
+          "description": "The student's grades for various courses.",
+          "items": {
+             "type": "object",
+             "properties": {
+               "courseName": { "type": "string" },
+               "grade": { "type": "number" }
+             },
+             "required": ["courseName", "grade"]
+          }
+        },
+        "academicHistory": {
+            "type": "string",
+            "description": "A brief summary of the student's academic background and achievements."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email"
+      ]
+    },
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user (admin or teacher) who can access the student directory.",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "The Firebase Authentication UID."
+        },
+        "email": {
+          "type": "string",
+          "description": "The user's email address."
+        },
+        "role": {
+          "type": "string",
+          "description": "The user's role (e.g., 'admin', 'teacher')."
+        }
+      },
+      "required": [
+        "uid",
+        "email",
+        "role"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password"
+    ]
+  },
+  "firestore": {
+    "/students/{studentId}": {
+      "schema": {
+        "$ref": "#/entities/Student"
+      },
+      "description": "Stores all student records. Admins have full CRUD access. Teachers have read-only access."
+    }
+  }
+}

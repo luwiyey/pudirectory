@@ -1,0 +1,108 @@
+/**
+ * @file Firestore Security Rules
+ * @description This ruleset enforces role-based access control for a student directory application.
+ *
+ * Data Structure:
+ * - /students/{studentId}: Student profile information.
+ * - /students/{studentId}/attendance/{attendanceId}: Attendance records for each student.
+ * - /students/{studentId}/notes/{noteId}: Private notes about each student.
+ *
+ * Key Security Decisions:
+ * - Admins have full CRUD access to student profiles.
+ * - Teachers have read-only access to student profiles.
+ * - Authenticated users can read all attendance records.
+ * - Authenticated users can create and manage their own notes for each student.
+ * - Listing all students is restricted to admins to prevent data leakage.
+ *
+ * Denormalization for Authorization:
+ * - The 'User' entity is not directly represented as a document but user roles are validated by a helper function. This prevents external modification of admin/teacher status.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Checks if the user is signed in.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * @description Checks if the user is an admin based on their email.
+     */
+    function isAdmin() {
+        return isSignedIn() && request.auth.token.email == "admin@panpacificu.edu.ph";
+    }
+
+    /**
+     * @description Checks if the user is a teacher based on their email.
+     */
+    function isTeacher() {
+        return isSignedIn() && request.auth.token.email != "admin@panpacificu.edu.ph";
+    }
+
+    /**
+     * @description Checks if the user is the owner of the resource, by comparing the UID.
+     */
+    function isOwner(userId) {
+        return isSignedIn() && request.auth.uid == userId;
+    }
+
+    /**
+     * @description Checks if the user is the owner of the existing resource.
+     */
+    function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+    }
+
+    /**
+     * @description Rules for the /students collection.
+     * @path /students/{studentId}
+     * @allow (create) If the user is an admin.
+     * @deny (create) If the user is not an admin.
+     * @allow (get) If the user is an admin or teacher.
+     * @deny (get) If the user is not an admin or teacher.
+     * @principle Enforces role-based access control for student profiles.
+     */
+    match /students/{studentId} {
+      allow get: if isAdmin() || isTeacher();
+      allow list: if isAdmin();
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    /**
+     * @description Rules for the /students/{studentId}/attendance collection.
+     * @path /students/{studentId}/attendance/{attendanceId}
+     * @allow (get) If the user is signed in.
+     * @deny (get) If the user is not signed in.
+     * @principle Allows authenticated users to read attendance records.
+     */
+    match /students/{studentId}/attendance/{attendanceId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Rules for the /students/{studentId}/notes collection.
+     * @path /students/{studentId}/notes/{noteId}
+     * @allow (create) If the user is signed in.
+     * @deny (create) If the user is not signed in.
+     * @allow (update) If the user is signed in and is the author of the note.
+     * @deny (update) If the user is not signed in or is not the author of the note.
+     * @principle Allows authenticated users to manage their own notes.
+     */
+    match /students/{studentId}/notes/{noteId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update: if isSignedIn() && request.auth.token.email == resource.data.authorEmail;
+      allow delete: if isSignedIn() && request.auth.token.email == resource.data.authorEmail;
+    }
+  }
+}

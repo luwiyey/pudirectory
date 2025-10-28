@@ -1,0 +1,44 @@
+# This GitHub Actions workflow is for Continuous Integration (CI).
+# It runs a series of checks on every push to the main branch
+# to ensure code quality and that the project builds successfully.
+
+name: CI - Build and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up the Node.js environment required for a Next.js app
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use Node.js version 20
+          cache: 'npm' # Cache npm dependencies for faster builds
+
+      # Step 3: Install all project dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Step 4: Run the linter to check for code style issues
+      - name: Run Linter
+        run: npm run lint
+
+      # Step 5: Run the TypeScript compiler to check for type errors
+      - name: Run Type Check
+        run: npm run typecheck
+      
+      # Step 6: Run the production build to ensure the application compiles successfully
+      - name: Build Project
+        run: npm run build
