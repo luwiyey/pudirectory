@@ -25,6 +25,12 @@ This section outlines the core features of the application, corresponding to a s
     - **Interactive Dashboard:** An analytics dashboard visualizes student data (demographics, course popularity) using `recharts`.
     - **Dynamic UI:** The interface includes real-time search, sorting, and a hierarchical department browser for an enhanced user experience.
 
+## Live Demo
+
+The application is deployed and accessible via Vercel.
+
+**Live URL:** [https://pudirectory25.vercel.app/](https://pudirectory25.vercel.app/)
+
 ## Local Development Quickstart
 
 ### Prerequisites
@@ -84,19 +90,23 @@ This project is configured with a GitHub Actions workflow (`.github/workflows/ci
 
 ## Submission
 
-### Prerequisites
-1. GitHub account
-2. Local development environment (VS Code, Git, etc.)
-
-### Submission Instructions
-
-#### Final Repository Check
-1. Ensure all code is pushed to GitHub.
-2. Verify README is complete and professional.
-3. Confirm all features are working as expected.
-
-#### Submission Form
-- **GitHub repository URL:** __________________
-- **Student Name:** __________________________
-- **Features implemented:** ___________________
-- **Challenges faced:** _______________________
+### Submission Form
+- **GitHub (Deployed in Vercel) repository URL:** [https://github.com/luwiyey/pudirectory](https://github.com/luwiyey/pudirectory) (Live demo hosted at [https://pudirectory25.vercel.app/](https://pudirectory25.vercel.app/))
+- **Student Name:** Zia Louise Mariano
+- **Features implemented:**
+    - **Role-Based Authentication & Authorization:** Secure login system for "Admin" and "Teacher" roles using Firebase Authentication. The UI and available actions dynamically adapt based on the logged-in user's permissions.
+    - **Full CRUD Functionality:** Admins have complete Create, Read, Update, and Delete capabilities for all student records.
+    - **Real-time Cloud Database:** Utilizes Firebase Firestore as a backend, ensuring all data is persisted in the cloud and synchronized in real-time across all users.
+    - **Advanced Data Management:**
+        - **Bulk Import/Export:** Admins can bulk import new students from a JSON file and export the entire student directory to JSON.
+        - **Grade Management:** Teachers can import grades for their specific classes from a JSON file and export class grade sheets.
+    - **Interactive Analytics Dashboard:** A comprehensive analytics page visualizes key student metrics, including enrollment per department, course popularity, and a real-time scholarship status tracker, using the `recharts` library.
+    - **Sophisticated UI & UX:**
+        - **Dynamic Directory:** Features real-time search and multi-key sorting (by name, department).
+        - **Hierarchical Department Browser:** An intuitive accordion-style browser to view students organized by college and department.
+        - **Responsive Design:** The application is fully responsive and provides a seamless experience on both desktop and mobile devices, built with Tailwind CSS and ShadCN UI.
+    - **CI/CD Pipeline:** The repository is configured with a GitHub Actions workflow for Continuous Integration, automatically running checks on every push to ensure code quality and build integrity. It is also pre-configured for deployment on Firebase App Hosting.
+- **Challenges faced:**
+    - **Implementing Granular Security Rules:** A significant challenge was designing and implementing Firestore Security Rules that could securely enforce different data access levels for Admins and Teachers. Ensuring that teachers could only read certain data and update specific fields (like grades), while Admins retained full control, required careful rule structuring.
+    - **Managing Real-time State:** Handling real-time data from Firestore across many different components (like the directory, analytics page, and student details page) was complex. A key challenge was preventing unnecessary re-renders and infinite loops caused by changing data, which was solved by carefully memoizing Firestore queries and structuring React hooks correctly.
+    - **Designing a Role-Aware UI:** Creating a clean user interface that elegantly shows or hides specific actions (like "Delete Student" or "Import Students") based on the user's role (Admin vs. Teacher) required careful state management and conditional rendering throughout the application to ensure the experience was intuitive for both user types.
